@@ -40,7 +40,14 @@ namespace Prometheus.MetricsExample.MyConsumer
                 
                 c.OnStatistics += (_, json) => {
                     var consumerLag = ExtractConsumerLag(json);
-                    
+
+                    if(consumerLag != null)
+                    {
+                        var gauge = Metrics.CreateGauge("librdkafka_consumer_lag", "store consumer lags", new GaugeConfiguration{
+                            LabelNames = new []{"topic", "partition", "consumerGroup"},
+                        });
+                        gauge.WithLabels(consumerLag.Topic, consumerLag.Partition, groupId).Set(consumerLag.Lag);
+                    }
                 };
 
                 while (consuming)
