@@ -13,16 +13,19 @@ namespace Prometheus.MetricsExample.MyProducer
 
             using (var p = new Producer<Null, string>(config))
             {
-                try
+                while (true)
                 {
-                    Thread.Sleep(500);
-                    var dr = await p.ProduceAsync("my-topic-1", new Message<Null, string> { Value = "test" });
-                    //I want to publish message every 500 millisecond.
-                    Console.WriteLine($"Delivered '{dr.Value}' to '{dr.TopicPartitionOffset}'");
-                }
-                catch (KafkaException e)
-                {
-                    Console.WriteLine($"Delivery failed: {e.Error.Reason}");
+                    try
+                    {
+                        Thread.Sleep(500);
+                        var dr = await p.ProduceAsync("my-topic-1", new Message<Null, string> { Value = "test" });
+                        //I want to publish message every 500 millisecond.
+                        Console.WriteLine($"Delivered '{dr.Value}' to '{dr.TopicPartitionOffset}'");
+                    }
+                    catch (KafkaException e)
+                    {
+                        Console.WriteLine($"Delivery failed: {e.Error.Reason}");
+                    }
                 }
             }
 
