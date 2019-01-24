@@ -44,8 +44,9 @@ namespace Prometheus.MetricsExample.MyConsumer
                     if(consumerLag != null)
                     {
                         var gauge = Metrics.CreateGauge("librdkafka_consumer_lag", "store consumer lags", new GaugeConfiguration{
-                            LabelNames = new []{"topic", "partition", "consumerGroup"},
+                            LabelNames = new []{"topic", "partition", "consumerGroup"}
                         });
+
                         gauge.WithLabels(consumerLag.Topic, consumerLag.Partition, groupId).Set(consumerLag.Lag);
                     }
                 };
@@ -55,8 +56,8 @@ namespace Prometheus.MetricsExample.MyConsumer
                     try
                     {
                         var cr = c.Consume();
-                        Thread.Sleep(delayInMilliseconds);
-                        Console.WriteLine($"Consumed message '{cr.Value}' at: '{cr.TopicPartitionOffset}'.");
+                        Console.WriteLine($"Consumed message '{cr.Value}' at: '{cr.TopicPartitionOffset}' in group {groupId}.");
+                        Thread.Sleep(new Random().Next(delayInMilliseconds));
                     }
                     catch (ConsumeException e)
                     {
