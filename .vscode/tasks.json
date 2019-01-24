@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/src/Prometheus.MetricsExample.MyConsumer/Prometheus.MetricsExample.MyConsumer.csproj"
+                "${workspaceFolder}/Prometheus.MetricsExample.sln"
             ],
             "problemMatcher": "$msCompile"
         }
