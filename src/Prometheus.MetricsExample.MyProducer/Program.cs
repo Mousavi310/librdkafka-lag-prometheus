@@ -17,7 +17,7 @@ namespace Prometheus.MetricsExample.MyProducer
                 try
                 {
                     Thread.Sleep(500);
-                    var dr = await p.ProduceAsync("test-topic", new Message<Null, string> { Value = "test" });
+                    var dr = await p.ProduceAsync("my-topic-1", new Message<Null, string> { Value = "test" });
                     //I want to publish message every 500 millisecond.
                     Console.WriteLine($"Delivered '{dr.Value}' to '{dr.TopicPartitionOffset}'");
                 }
