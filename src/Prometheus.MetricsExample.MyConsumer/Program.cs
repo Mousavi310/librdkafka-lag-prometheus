@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Threading;
 using System.Threading.Tasks;
 using Confluent.Kafka;
+using Newtonsoft.Json.Linq;
 
 namespace Prometheus.MetricsExample.MyConsumer
 {
@@ -37,7 +39,8 @@ namespace Prometheus.MetricsExample.MyConsumer
 
                 
                 c.OnStatistics += (_, json) => {
-                    var statistics = json;
+                    var consumerLag = ExtractConsumerLag(json);
+                    
                 };
 
                 while (consuming)
@@ -55,6 +58,45 @@ namespace Prometheus.MetricsExample.MyConsumer
                 }
                 c.Close();
             }
+        }
+
+        public static ConsumerLag ExtractConsumerLag(string json)
+        {
+            dynamic jsonObject = JObject.Parse(json);
+
+            try
+            {
+                
+                foreach (var topic in jsonObject.topics.Properties())
+                {
+                    foreach(var topicProperty in topic.Value.Properties())
+                    {
+                        if(topicProperty.Name != "partitions") continue;
+
+                        foreach(var partition in topicProperty.Value.Properties())
+                        {
+                            foreach(var field in partition.Value.Properties())
+                            {
+                                if(field.Name == "consumer_lag")
+                                {
+                                    return new ConsumerLag
+                                    {
+                                        Lag = field.Value,
+                                        Topic = topicProperty.Name,
+                                        Partition = partition.Name
+                                    };
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (System.Exception ex)
+            {
+                
+            }
+
+            return null;
         }
     }
 }

@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "e927d6837ebdf4f34dfeca1118645e0a1d63e987"
+    "signature": "01b3342050c41e52d46a8311afafab444a35aa1c"
   },
   "compilationOptions": {},
   "targets": {
@@ -9,6 +9,7 @@
       "Prometheus.MetricsExample.MyConsumer/1.0.0": {
         "dependencies": {
           "Confluent.Kafka": "1.0.0-beta2",
+          "Newtonsoft.Json": "12.0.1",
           "prometheus-net": "2.1.3"
         },
         "runtime": {
@@ -89,6 +90,14 @@
             "rid": "win-x86",
             "assetType": "native",
             "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/12.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.1.22727"
           }
         }
       },
@@ -363,6 +372,13 @@
       "sha512": "sha512-45sAQu9BGH5v5PRPvP+Mm5Be87+WyweUU/G21tD6fCv10hpn2gDBzJI8EoUIryE1OYTCWtrQo1cfTnFyKz1zLw==",
       "path": "librdkafka.redist/1.0.0-pre1",
       "hashPath": "librdkafka.redist.1.0.0-pre1.nupkg.sha512"
+    },
+    "Newtonsoft.Json/12.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jmVyoEyk0In8r+AObYQyFKVFm7uSRzE0XSHSbEtBJcZDMV6DqJoyB4FLcHwprPVhAh826so0db3DIKXVnpGoPA==",
+      "path": "newtonsoft.json/12.0.1",
+      "hashPath": "newtonsoft.json.12.0.1.nupkg.sha512"
     },
     "prometheus-net/2.1.3": {
       "type": "package",
