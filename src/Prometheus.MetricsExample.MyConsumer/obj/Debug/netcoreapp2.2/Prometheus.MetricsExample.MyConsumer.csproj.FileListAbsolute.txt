@@ -1,0 +1,11 @@
+/home/morteza/Prometheus.MetricsExample/src/Prometheus.MetricsExample.MyConsumer/obj/Debug/netcoreapp2.2/Prometheus.MetricsExample.MyConsumer.csprojAssemblyReference.cache
+/home/morteza/Prometheus.MetricsExample/src/Prometheus.MetricsExample.MyConsumer/obj/Debug/netcoreapp2.2/Prometheus.MetricsExample.MyConsumer.csproj.CoreCompileInputs.cache
+/home/morteza/Prometheus.MetricsExample/src/Prometheus.MetricsExample.MyConsumer/obj/Debug/netcoreapp2.2/Prometheus.MetricsExample.MyConsumer.AssemblyInfoInputs.cache
+/home/morteza/Prometheus.MetricsExample/src/Prometheus.MetricsExample.MyConsumer/obj/Debug/netcoreapp2.2/Prometheus.MetricsExample.MyConsumer.AssemblyInfo.cs
+/home/morteza/Prometheus.MetricsExample/src/Prometheus.MetricsExample.MyConsumer/bin/Debug/netcoreapp2.2/Prometheus.MetricsExample.MyConsumer.deps.json
+/home/morteza/Prometheus.MetricsExample/src/Prometheus.MetricsExample.MyConsumer/bin/Debug/netcoreapp2.2/Prometheus.MetricsExample.MyConsumer.runtimeconfig.json
+/home/morteza/Prometheus.MetricsExample/src/Prometheus.MetricsExample.MyConsumer/bin/Debug/netcoreapp2.2/Prometheus.MetricsExample.MyConsumer.runtimeconfig.dev.json
+/home/morteza/Prometheus.MetricsExample/src/Prometheus.MetricsExample.MyConsumer/bin/Debug/netcoreapp2.2/Prometheus.MetricsExample.MyConsumer.dll
+/home/morteza/Prometheus.MetricsExample/src/Prometheus.MetricsExample.MyConsumer/bin/Debug/netcoreapp2.2/Prometheus.MetricsExample.MyConsumer.pdb
+/home/morteza/Prometheus.MetricsExample/src/Prometheus.MetricsExample.MyConsumer/obj/Debug/netcoreapp2.2/Prometheus.MetricsExample.MyConsumer.dll
+/home/morteza/Prometheus.MetricsExample/src/Prometheus.MetricsExample.MyConsumer/obj/Debug/netcoreapp2.2/Prometheus.MetricsExample.MyConsumer.pdb
