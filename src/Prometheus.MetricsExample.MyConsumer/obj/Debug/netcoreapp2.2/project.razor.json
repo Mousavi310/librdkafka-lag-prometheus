@@ -1,0 +1,14 @@
+{
+  "ProjectFilePath": "/home/morteza/Prometheus.MetricsExample/src/Prometheus.MetricsExample.MyConsumer/Prometheus.MetricsExample.MyConsumer.csproj",
+  "TargetFramework": "netcoreapp2.2",
+  "TagHelpers": [],
+  "Configuration": {
+    "ConfigurationName": "UnsupportedRazor",
+    "LanguageVersion": "1.0",
+    "Extensions": [
+      {
+        "ExtensionName": "UnsupportedRazorExtension"
+      }
+    ]
+  }
+}
