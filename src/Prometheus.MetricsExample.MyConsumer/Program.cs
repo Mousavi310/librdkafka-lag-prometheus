@@ -23,7 +23,8 @@ namespace Prometheus.MetricsExample.MyConsumer
             {
                 GroupId = groupId,
                 BootstrapServers = "localhost:9092",
-                AutoOffsetReset = AutoOffsetResetType.Earliest
+                AutoOffsetReset = AutoOffsetResetType.Earliest,
+                StatisticsIntervalMs = 1000
             };
 
             using (var c = new Consumer<Ignore, string>(conf))
@@ -32,6 +33,11 @@ namespace Prometheus.MetricsExample.MyConsumer
 
                 bool consuming = true;
                 c.OnError += (_, e) => consuming = !e.IsFatal;
+
+                
+                c.OnStatistics += (_, json) => {
+                    var statistics = json;
+                };
 
                 while (consuming)
                 {
