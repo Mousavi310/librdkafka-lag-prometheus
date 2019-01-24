@@ -11,7 +11,6 @@ namespace Prometheus.MetricsExample.MyProducer
         {
             var config = new ProducerConfig { BootstrapServers = "localhost:9092" };
 
-            // A Producer for sending messages with null keys and UTF-8 encoded values.
             using (var p = new Producer<Null, string>(config))
             {
                 try
