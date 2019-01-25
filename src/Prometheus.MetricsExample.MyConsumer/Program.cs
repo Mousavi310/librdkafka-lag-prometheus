@@ -56,8 +56,8 @@ namespace Prometheus.MetricsExample.MyConsumer
                     try
                     {
                         var cr = c.Consume();
-                        Console.WriteLine($"Consumed message '{cr.Value}' at: '{cr.TopicPartitionOffset}' in group {groupId}.");
                         Thread.Sleep(new Random().Next(delayInMilliseconds));
+                        Console.WriteLine($"Consumed message '{cr.Value}' at: '{cr.TopicPartitionOffset}' in group {groupId}.");
                     }
                     catch (ConsumeException e)
                     {
