@@ -11,8 +11,8 @@ namespace Prometheus.MetricsExample.MyConsumer
     {
         static async Task Main(string[] args)
         {
-            Task.Run(() => ConsumeMessages("my-client-1", "my-consumer-group-1", "my-topic-1", 2000));
-            Task.Run(() => ConsumeMessages("my-client-2", "my-consumer-group-2", "my-topic-1", 5000));
+            Task.Run(() => ConsumeMessages("my-client-1", "my-consumer-group-1", "my-topic-1", 100));
+            Task.Run(() => ConsumeMessages("my-client-2", "my-consumer-group-2", "my-topic-1", 110));
             
             var metricServer = new MetricServer(port: 7075);
             metricServer.Start();

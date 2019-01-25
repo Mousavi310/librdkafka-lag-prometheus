@@ -17,9 +17,8 @@ namespace Prometheus.MetricsExample.MyProducer
                 {
                     try
                     {
-                        Thread.Sleep(500);
                         var dr = await p.ProduceAsync("my-topic-1", new Message<Null, string> { Value = "test" });
-                        //I want to publish message every 500 millisecond.
+                        Thread.Sleep(new Random().Next(100));
                         Console.WriteLine($"Delivered '{dr.Value}' to '{dr.TopicPartitionOffset}'");
                     }
                     catch (KafkaException e)
