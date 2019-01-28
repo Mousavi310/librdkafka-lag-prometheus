@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Confluent.Kafka;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Prometheus.MetricsExample.MyConsumer
@@ -36,18 +38,20 @@ namespace Prometheus.MetricsExample.MyConsumer
 
                 bool consuming = true;
                 c.OnError += (_, e) => consuming = !e.IsFatal;
-
                 
                 c.OnStatistics += (_, json) => {
-                    var consumerLag = ExtractConsumerLag(json);
+                    var statistics = JsonConvert.DeserializeObject<ConsumerStatistics>(json);
 
-                    if(consumerLag != null)
+                    foreach(var topic in statistics.Topics)
                     {
-                        var gauge = Metrics.CreateGauge("librdkafka_consumer_lag", "store consumer lags", new GaugeConfiguration{
-                            LabelNames = new []{"topic", "partition", "consumerGroup"}
-                        });
+                        foreach(var partition in topic.Value.Partitions)
+                        {
+                            var gauge = Metrics.CreateGauge("librdkafka_consumer_lag", "store consumer lags", new GaugeConfiguration{
+                                LabelNames = new []{"topic", "partition", "consumerGroup"}
+                            });
 
-                        gauge.WithLabels(consumerLag.Topic, consumerLag.Partition, groupId).Set(consumerLag.Lag);
+                            gauge.WithLabels(topic.Key, partition.Key, groupId).Set(partition.Value.ConsumerLag);
+                        }
                     }
                 };
 
@@ -66,45 +70,6 @@ namespace Prometheus.MetricsExample.MyConsumer
                 }
                 c.Close();
             }
-        }
-
-        public static ConsumerLag ExtractConsumerLag(string json)
-        {
-            dynamic jsonObject = JObject.Parse(json);
-
-            try
-            {
-                
-                foreach (var topic in jsonObject.topics.Properties())
-                {
-                    foreach(var topicProperty in topic.Value.Properties())
-                    {
-                        if(topicProperty.Name != "partitions") continue;
-
-                        foreach(var partition in topicProperty.Value.Properties())
-                        {
-                            foreach(var field in partition.Value.Properties())
-                            {
-                                if(field.Name == "consumer_lag")
-                                {
-                                    return new ConsumerLag
-                                    {
-                                        Lag = field.Value,
-                                        Topic = topicProperty.Name,
-                                        Partition = partition.Name
-                                    };
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            catch (System.Exception ex)
-            {
-                
-            }
-
-            return null;
         }
     }
 }
